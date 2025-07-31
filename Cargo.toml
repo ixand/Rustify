@@ -1,0 +1,19 @@
+[package]
+name = "rustify"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+clap = { version = "4.5", features = ["derive"] }
+walkdir = "2.4"
+anyhow = "1.0"
+log = "0.4"
+env_logger = "0.11"
+
+[profile.release]
+opt-level = "z"       # Optimize for minimum size ("s" is also a valid alternative)
+lto = true            # Link Time Optimization — merges code to reduce size
+strip = true          # Automatically strips debug symbols from the final binary
+panic = "abort"       # Simplifies panic code, avoiding stack unwinding
+codegen-units = 1     # Enables better optimization at the cost of longer compile time
+
